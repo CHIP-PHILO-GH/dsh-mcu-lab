@@ -163,12 +163,12 @@ the defaults apply when a variable is unset.
 | Environment variable | Purpose | Default |
 |---|---|---|
 | `DSH_MCU_LAB_IFACE` | Directory of the interface scripts (`build51.py` / `proteus_ctl.py` / `verify.py`) | **Bundled**: `kernel/iface/` |
-| `DSH_MCU_LAB_KEIL` | Path to `C51.exe` (only the `check` subcommand inspects it) | `D:\keil\C51\BIN\C51.exe` |
-| `DSH_MCU_LAB_ISIS` | Path to `ISIS.EXE` (inspection and simulation control) | `D:\Proteus7\BIN\ISIS.EXE` |
+| `DSH_MCU_LAB_KEIL` | Path to `C51.exe` (only the `check` subcommand inspects it) | `<KEIL_DIR>\C51\BIN\C51.exe` |
+| `DSH_MCU_LAB_ISIS` | Path to `ISIS.EXE` (inspection and simulation control) | `<PROTEUS_DIR>\BIN\ISIS.EXE` |
 | `DSH_MCU_LAB_DSN_INDEX` | Path to `dsn_index.json` (only `mcu_list` uses it) | **empty** — no circuit index ships with this repository |
-| `DSH_MCU_LAB_KEIL_DIR` | Keil installation root (used by the interface script `build51.py`) | `D:\keil` |
-| `DSH_MCU_LAB_PROTEUS_TEMP` | Temporary directory for the Proteus simulation | `D:\proteus_temp` |
-| `DSH_MCU_LAB_SDCC_BIN` | SDCC toolchain directory (only when using `sdcc51.py`) | `D:\sdcc\bin` |
+| `DSH_MCU_LAB_KEIL_DIR` | Keil installation root (used by the interface script `build51.py`) | `<KEIL_DIR>` |
+| `DSH_MCU_LAB_PROTEUS_TEMP` | Temporary directory for the Proteus simulation | `<PROTEUS_TEMP>` |
+| `DSH_MCU_LAB_SDCC_BIN` | SDCC toolchain directory (only when using `sdcc51.py`) | `<SDCC_BIN>` |
 
 The three `D:\...` defaults are the original author's own Windows paths on his machine (not generic paths — they
 will not match yours). Run `python kernel/mcu_lab.py check` first: it reports item by item which paths do not exist.
@@ -272,3 +272,5 @@ The commands actually run during this packaging pass, and their results, are rec
 
 Keil and Proteus are commercial products of their respective companies; this repository neither contains nor
 redistributes them.
+
+

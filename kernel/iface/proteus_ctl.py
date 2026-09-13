@@ -22,8 +22,8 @@ import win32ui
 from PIL import Image
 
 # Proteus 安装位置与临时目录。可用 DSH_MCU_LAB_ISIS / DSH_MCU_LAB_PROTEUS_TEMP 覆盖。
-ISIS_EXE = os.environ.get("DSH_MCU_LAB_ISIS") or r"D:\Proteus7\BIN\ISIS.EXE"
-PROTEUS_TEMP = os.environ.get("DSH_MCU_LAB_PROTEUS_TEMP") or r"D:\proteus_temp"
+ISIS_EXE = os.environ.get("DSH_MCU_LAB_ISIS") or next((os.path.join(r, n, "BIN", "ISIS.EXE") for r in [os.environ.get("ProgramFiles", ""), os.environ.get("LOCALAPPDATA", "")] + [f"{d}:\\" for d in "CDEFGHIJ"] for n in ("Proteus 8 Professional", "Proteus7", "Proteus 8") if r and os.path.isfile(os.path.join(r, n, "BIN", "ISIS.EXE"))), "")
+PROTEUS_TEMP = os.environ.get("DSH_MCU_LAB_PROTEUS_TEMP") or os.path.join(os.environ.get("TEMP", os.getcwd()), "dsh-mcu-lab-proteus")
 TITLE_MARK = "ISIS Professional"
 VK_CONTROL = 0x11
 VK_F12 = 0x7B
@@ -315,3 +315,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+

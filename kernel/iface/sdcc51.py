@@ -29,7 +29,7 @@ def _find_sdcc_bin():
     if configured:
         return configured
     exe = shutil.which("sdcc")
-    return os.path.dirname(exe) if exe else r"D:\sdcc\bin"
+    return os.path.dirname(exe) if exe else next((os.path.join(r, n, "bin") for r in [os.environ.get("ProgramFiles", ""), os.environ.get("LOCALAPPDATA", "")] + [f"{d}:\\" for d in "CDEFGHIJ"] for n in ("sdcc", "SDCC") if r and os.path.isfile(os.path.join(r, n, "bin", "sdcc.exe"))), "")
 
 SDCC_BIN = _find_sdcc_bin()
 SHIM_INC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sdcc-inc")  # Keil 兼容头 shim
@@ -89,3 +89,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+

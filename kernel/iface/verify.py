@@ -12,8 +12,8 @@ except Exception:
     win32gui = None
 
 # Proteus 安装位置与临时目录。可用 DSH_MCU_LAB_ISIS / DSH_MCU_LAB_PROTEUS_TEMP 覆盖。
-ISIS_EXE = os.environ.get("DSH_MCU_LAB_ISIS") or r"D:\Proteus7\BIN\ISIS.EXE"
-TEMP_DIR = os.environ.get("DSH_MCU_LAB_PROTEUS_TEMP") or r"D:\proteus_temp"
+ISIS_EXE = os.environ.get("DSH_MCU_LAB_ISIS") or r"<PROTEUS_DIR>\BIN\ISIS.EXE"
+TEMP_DIR = os.environ.get("DSH_MCU_LAB_PROTEUS_TEMP") or r"<PROTEUS_TEMP>"
 FAIL_RE = re.compile(r"cannot open|simulation\s+failed|fatal simulator|\berror\b", re.I)
 RUN_RE = re.compile(r"simulation\s*(started|running)|animation|\brunning\b|time\s*[=:]", re.I)
 LOAD_RE = re.compile(r"loading\s+(design|project)|正在加载", re.I)
@@ -144,3 +144,5 @@ def main():
     print(json.dumps(result,ensure_ascii=True,separators=(',',':'))); return 0 if result['running'] else 1
 
 if __name__=='__main__': raise SystemExit(main())
+
+

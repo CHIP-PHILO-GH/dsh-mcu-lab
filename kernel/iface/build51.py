@@ -16,8 +16,8 @@ import re
 import subprocess
 import sys
 
-# Keil 安装根目录。默认按常见的 D:\keil；装在别处请设环境变量 DSH_MCU_LAB_KEIL_DIR。
-KEIL_DIR = os.environ.get("DSH_MCU_LAB_KEIL_DIR") or r"D:\keil"
+# Keil 安装根目录。默认按常见的 <KEIL_DIR>；装在别处请设环境变量 DSH_MCU_LAB_KEIL_DIR。
+KEIL_DIR = os.environ.get("DSH_MCU_LAB_KEIL_DIR") or next((os.path.join(r, n) for r in [os.environ.get("ProgramFiles", ""), os.environ.get("LOCALAPPDATA", "")] + [f"{d}:\\" for d in "CDEFGHIJ"] for n in ("Keil", "keil", "Keil_v5") if r and os.path.isfile(os.path.join(r, n, "C51", "BIN", "C51.exe"))), "")
 C51 = os.path.join(KEIL_DIR, r"C51\BIN\C51.exe")
 BL51 = os.path.join(KEIL_DIR, r"C51\BIN\BL51.exe")
 OH51 = os.path.join(KEIL_DIR, r"C51\BIN\OH51.exe")
@@ -134,3 +134,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+

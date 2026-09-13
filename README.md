@@ -154,14 +154,14 @@ python kernel/mcu_lab.py sim <你的电路.DSN> --seconds 8 --shot out.png
 | 环境变量 | 作用 | 默认值 |
 |---|---|---|
 | `DSH_MCU_LAB_IFACE` | 接口脚本目录（`build51.py` / `proteus_ctl.py` / `verify.py`） | **仓库自带**：`kernel/iface/` |
-| `DSH_MCU_LAB_KEIL` | `C51.exe` 的路径（`check` 体检用） | `D:\keil\C51\BIN\C51.exe` |
-| `DSH_MCU_LAB_ISIS` | `ISIS.EXE` 的路径（体检与仿真控制用） | `D:\Proteus7\BIN\ISIS.EXE` |
+| `DSH_MCU_LAB_KEIL` | `C51.exe` 的路径（`check` 体检用） | `<KEIL_DIR>\C51\BIN\C51.exe` |
+| `DSH_MCU_LAB_ISIS` | `ISIS.EXE` 的路径（体检与仿真控制用） | `<PROTEUS_DIR>\BIN\ISIS.EXE` |
 | `DSH_MCU_LAB_DSN_INDEX` | `dsn_index.json` 的路径（只有 `mcu_list` 用） | **空**——本仓库不附带电路索引 |
-| `DSH_MCU_LAB_KEIL_DIR` | Keil 安装根目录（接口脚本 `build51.py` 用） | `D:\keil` |
-| `DSH_MCU_LAB_PROTEUS_TEMP` | Proteus 仿真临时目录 | `D:\proteus_temp` |
-| `DSH_MCU_LAB_SDCC_BIN` | SDCC 工具链目录（只在用 `sdcc51.py` 时） | `D:\sdcc\bin` |
+| `DSH_MCU_LAB_KEIL_DIR` | Keil 安装根目录（接口脚本 `build51.py` 用） | `<KEIL_DIR>` |
+| `DSH_MCU_LAB_PROTEUS_TEMP` | Proteus 仿真临时目录 | `<PROTEUS_TEMP>` |
+| `DSH_MCU_LAB_SDCC_BIN` | SDCC 工具链目录（只在用 `sdcc51.py` 时） | `<SDCC_BIN>` |
 
-`D:\keil`、`D:\Proteus7`、`D:\sdcc` 是这三款软件的**常见默认安装位置**，不是作者的个人信息；
+`<KEIL_DIR>`、`<PROTEUS_DIR>`、`<SDCC_BIN>` 是这三款软件的**常见默认安装位置**，不是作者的个人信息；
 装在别处就设上面对应的变量。先跑一次体检：
 
 ```bash
@@ -301,3 +301,5 @@ python kernel/mcu_lab.py run examples\broken.c <同一个电路.DSN> --wait 6
 [MIT](LICENSE) © 2026 CHIP-PHILO-GH
 
 Keil、Proteus 是各自公司的商业软件，本仓库不包含、也不分发它们。
+
+

@@ -61,9 +61,9 @@ python kernel/mcu_lab.py verify <电路.DSN>
 
 ## 前置依赖
 
-- Keil C51（C51 / BL51 / OH51）——原作者本机装在 `D:\keil`；**安装位置随人而异**，内核里的
+- Keil C51（C51 / BL51 / OH51）——原作者本机装在 `<KEIL_DIR>`；**安装位置随人而异**，内核里的
   `KEIL` 常量要改成你自己的路径
-- Proteus ISIS——原作者本机装在 `D:\Proteus7\BIN\ISIS.EXE`；**必须英文路径**，中文路径会崩（原作者经验）
+- Proteus ISIS——原作者本机装在 `<PROTEUS_DIR>\BIN\ISIS.EXE`；**必须英文路径**，中文路径会崩（原作者经验）
 - Python 3（原作者实测 3.13.15；内核只用标准库，不需要任何第三方包）
 - 接口脚本 `build51.py` / `proteus_ctl.py` / `verify.py`：随仓库发布在 `kernel/iface/`（可用 `DSH_MCU_LAB_IFACE` 指向你自己的目录）
 
@@ -72,6 +72,8 @@ python kernel/mcu_lab.py verify <电路.DSN>
 | 现象 | 原因 | 处理 |
 |---|---|---|
 | 编译报 C141 之类语法错误 | 源码里有中文注释 | C51 源码必须纯 ASCII |
-| `Cannot open LISA*.SDF` | 临时目录含中文 | 已用 `D:\proteus_temp` 做进程级隔离 |
+| `Cannot open LISA*.SDF` | 临时目录含中文 | 已用 `<PROTEUS_TEMP>` 做进程级隔离 |
 | 判定 FAIL 但截图里 LED 亮着 | 电路里 hex 文件名对不上 | 用 `--hex-name` 指定电路期望的 hex 名 |
 | 工具没出现在会话里 | 插件还没生效 | 重启 `dsh web` |
+
+

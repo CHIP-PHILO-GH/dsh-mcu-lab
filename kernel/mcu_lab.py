@@ -64,8 +64,8 @@ def _env(name, default=""):
 # KEIL / ISIS / DSN_INDEX 留空表示"未设置"：`check` 会据实报 false，不猜测路径。
 # ---------------------------------------------------------------------------
 IFACE = _env("DSH_MCU_LAB_IFACE", os.path.join(HERE, "iface"))
-KEIL = _env("DSH_MCU_LAB_KEIL", r"D:\keil\C51\BIN\C51.exe")
-ISIS = _env("DSH_MCU_LAB_ISIS", r"D:\Proteus7\BIN\ISIS.EXE")
+KEIL = _env("DSH_MCU_LAB_KEIL", next((os.path.join(r, n, "C51", "BIN", "C51.exe") for r in [os.environ.get("ProgramFiles", ""), os.environ.get("LOCALAPPDATA", "")] + [f"{d}:\\" for d in "CDEFGHIJ"] for n in ("Keil", "keil", "Keil_v5") if r and os.path.isfile(os.path.join(r, n, "C51", "BIN", "C51.exe"))), ""))
+ISIS = _env("DSH_MCU_LAB_ISIS", next((os.path.join(r, n, "BIN", "ISIS.EXE") for r in [os.environ.get("ProgramFiles", ""), os.environ.get("LOCALAPPDATA", "")] + [f"{d}:\\" for d in "CDEFGHIJ"] for n in ("Proteus 8 Professional", "Proteus7", "Proteus 8") if r and os.path.isfile(os.path.join(r, n, "BIN", "ISIS.EXE"))), ""))
 DSN_INDEX = _env("DSH_MCU_LAB_DSN_INDEX")
 
 BUILD51 = os.path.join(IFACE, "build51.py")
@@ -341,3 +341,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
