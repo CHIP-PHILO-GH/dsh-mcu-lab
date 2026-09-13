@@ -12,6 +12,7 @@
 
 import { execFileSync } from 'node:child_process'
 import { readFileSync, readdirSync, statSync, mkdtempSync, writeFileSync, copyFileSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -137,7 +138,7 @@ if (needPython('list 输出 JSON，字段随索引文件走')) {
 
 console.log('\n— 3. 免费 SDCC 编译与离线判定通路 —')
 if (needPython('SDCC/离线通路')) {
-  const tmp = mkdtempSync(join(ROOT, '..', 'dsh-mcu-lab-offline-'))
+  const tmp = mkdtempSync(join(tmpdir(), 'dsh-mcu-lab-offline-'))
   try {
     const src = join(tmp, 'led_blink.c')
     copyFileSync(join(ROOT, 'examples', 'led_blink.c'), src)

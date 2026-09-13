@@ -6,6 +6,14 @@
 
 首个公开版本，整理自作者本机自用的插件 `@local/dsh-mcu-lab`。
 
+### 修复（2026-09-13 发布前整理）
+
+- `package.json` 增加 `peerDependencies`：`@deepseek-ai/dsh-tools`。插件侧运行时依赖 DSH 宿主提供，
+  原先一条依赖都没声明，陌生人克隆后直接导入会报「找不到包」。本包不把宿主运行时复制进自身依赖树，
+  README「前置条件」已同步说明这是设计边界。
+- `test.mjs` 的临时目录改用系统临时目录：原先建在仓库的上一级目录里，测试被打断就会在克隆目录旁边
+  留下 `dsh-mcu-lab-offline-*` 残留。
+
 ### 新增
 
 - 5 个 DSH 工具：`mcu_run`（编译 + 仿真 + 判定，推荐入口）、`mcu_build`、`mcu_sim`、`mcu_verify`、`mcu_list`。
