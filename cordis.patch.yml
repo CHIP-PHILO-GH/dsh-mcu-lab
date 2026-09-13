@@ -1,0 +1,4 @@
+# dsh-mcu-lab profile patch layer
+- insert:
+    - id: mcu-lab
+      name: 'dsh-mcu-lab'

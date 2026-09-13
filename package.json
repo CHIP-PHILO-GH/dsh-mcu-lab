@@ -1,0 +1,56 @@
+{
+  "name": "dsh-mcu-lab",
+  "version": "0.1.0",
+  "description": "DSH 插件：把 51 单片机的 Keil C51 编译、Proteus 仿真与确定性判定接进 AI 会话（5 个工具 + 命令行内核）",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "kernel",
+    "examples",
+    "cordis.patch.yml",
+    "dsh.plugin.json",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18",
+    "dsh": ">=0.0.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "*"
+  },
+  "scripts": {
+    "test": "node test.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "8051",
+    "mcs-51",
+    "at89c51",
+    "keil",
+    "c51",
+    "proteus",
+    "simulation",
+    "embedded",
+    "单片机",
+    "仿真"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CHIP-PHILO-GH/dsh-mcu-lab.git"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "dsh-mcu-lab",
+  "version": "0.1.0",
+  "main": "./lib/index.js",
+  "description": "51 单片机开发闭环：Keil 编译 + Proteus 仿真 + 确定性验证",
+  "engines": { "dsh": ">=0.0.1" },
+  "contributes": { "tools": ["mcu_run", "mcu_build", "mcu_sim", "mcu_verify", "mcu_list"], "skills": [], "commands": [] }
+}

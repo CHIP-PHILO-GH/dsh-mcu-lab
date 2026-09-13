@@ -1,0 +1,32 @@
+name: CI
+
+# 这里**只**跑零依赖测试。
+#
+# 本项目真正的功能是「Keil C51 编译 → Proteus 仿真 → 确定性判定」，它需要在本机装好
+# Keil C51 与 Proteus ISIS（两者都是商业软件，runner 上没有），并且链路中间还有三个
+# 不在本仓库内的脚本（build51.py / proteus_ctl.py / verify.py）。所以本工作流
+# **不假装**跑过编译或仿真：端到端只能由使用者在自己的机器上自验，方法见 README 的「测试」一节。
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  zero-dependency:
+    name: 零依赖测试（不含 Keil / Proteus 路径，node ${{ matrix.node-version }}）
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20', '22']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # ubuntu-latest 自带 python3，测试里的内核命令行契约与纯函数部分会用它
+      - name: 跑测试
+        run: node test.mjs

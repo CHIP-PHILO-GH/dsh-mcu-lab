@@ -1,0 +1,72 @@
+# 依赖
+node_modules/
+
+# 日志与临时文件
+*.log
+npm-debug.log*
+*.tmp
+*.bak
+*.orig
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 本机专属配置与凭据（切勿提交）
+.env
+.env.*
+cordis.patch.local.yml
+*.local.yml
+
+# 编辑器
+.vscode/
+.idea/
+
+# ── Keil C51 / 8051 构建产物 ──
+# 内核跑 build 时会在源文件旁边生成这些文件（示例目录里也会出现），不要提交
+*.hex
+*.HEX
+*.LST
+*.lst
+*.M51
+*.m51
+*.OBJ
+*.obj
+# OH51 转出的「绝对目标文件」没有扩展名，名字 = 源文件基名的大写（led_blink.c -> LED_BLINK），
+# 上面的 *.OBJ / *.M51 都盖不住。本仓库的示例里会出现这一个，自己新增示例时照此补一行。
+examples/LED_BLINK
+*.lnp
+*.plg
+*.map
+*.sct
+*.uvproj
+*.uvopt
+*.uvgui
+*.uvgui.*
+*.build_log.htm
+
+# ── Proteus 产物 ──
+*.DSN
+*.dsn
+*.DBK
+*.dbk
+*.workspace
+*.pdsprj
+*.pdsbak
+*.SAV
+*.sav
+
+# ── 内核工作目录（每次仿真的 .DSN + hex 副本） ──
+kernel/work/
+work/
+
+# ── Python ──
+__pycache__/
+*.pyc
+
+# examples 下只保留 .c 源文件：Keil 的 OH51 会为任意源文件生成无扩展名产物，
+# 逐个列名字会漏（本次整理就漏过一次），因此改为「整目录忽略、只放行 .c」。
+examples/*
+!examples/*.c
