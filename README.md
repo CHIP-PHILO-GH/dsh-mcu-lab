@@ -3,6 +3,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://github.com/CHIP-PHILO-GH/dsh-mcu-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/CHIP-PHILO-GH/dsh-mcu-lab/actions/workflows/ci.yml)
 
+只想要“照着做一遍”的封装版本（含安装、配置与排错表），见同名技能包 dsh-mcu-lab；本仓库是代码本体。
+
 把「Keil C51 编译 → Proteus 仿真 → 确定性判定」这条 51 单片机开发链路接进 DSH 会话，
 让 AI 在对话里直接编译 hex、跑电路、拿到 PASS/FAIL 与判定依据。
 
