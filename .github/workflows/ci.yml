@@ -16,7 +16,10 @@ on:
 jobs:
   zero-dependency:
     name: 零依赖测试（不含 Keil / Proteus 路径，node ${{ matrix.node-version }}）
-    runs-on: ubuntu-latest
+    # 这个项目的离线通路也依赖 Windows：内核对 DSN 的确定性判定走 Win32 窗口接口
+    # （ctypes.windll），Linux 上根本没有 windll 属性。所以必须在 Windows 上验，
+    # 不能拿 Linux runner 假装跑过。
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
@@ -27,6 +30,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      # ubuntu-latest 自带 python3，测试里的内核命令行契约与纯函数部分会用它
+      # 测试里的内核命令行契约与纯函数部分需要 Python 3，显式装一个，不靠 runner 碰运气
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
       - name: 跑测试
         run: node test.mjs
