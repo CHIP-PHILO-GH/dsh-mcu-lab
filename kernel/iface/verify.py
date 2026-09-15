@@ -17,8 +17,14 @@ TEMP_DIR = os.environ.get("DSH_MCU_LAB_PROTEUS_TEMP") or r"<PROTEUS_TEMP>"
 FAIL_RE = re.compile(r"cannot open|simulation\s+failed|fatal simulator|\berror\b", re.I)
 RUN_RE = re.compile(r"simulation\s*(started|running)|animation|\brunning\b|time\s*[=:]", re.I)
 LOAD_RE = re.compile(r"loading\s+(design|project)|正在加载", re.I)
-user32 = ctypes.windll.user32
-kernel32 = ctypes.windll.kernel32
+try:
+    user32 = ctypes.windll.user32
+    kernel32 = ctypes.windll.kernel32
+except AttributeError:
+    # 非 Windows 平台没有 ctypes.windll。模块仍应可导入：离线后端（--backend offline）
+    # 是纯字符串判定、根本不碰 Win32，--help 也要能用；只有真去读 ISIS 窗口的那部分
+    # 才依赖 Windows，缺了它应当在使用时报错，而不是在导入时就崩掉整个模块。
+    user32 = kernel32 = None
 WM_GETTEXT = 0x000D
 SB_GETTEXTL = 0x0400 + 12
 WM_CLOSE = 0x0010

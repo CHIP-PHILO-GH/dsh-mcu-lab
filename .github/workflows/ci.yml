@@ -16,10 +16,11 @@ on:
 jobs:
   zero-dependency:
     name: 零依赖测试（不含 Keil / Proteus 路径，node ${{ matrix.node-version }}）
-    # 这个项目的离线通路也依赖 Windows：内核对 DSN 的确定性判定走 Win32 窗口接口
-    # （ctypes.windll），Linux 上根本没有 windll 属性。所以必须在 Windows 上验，
-    # 不能拿 Linux runner 假装跑过。
-    runs-on: windows-latest
+    # 用 ubuntu 而不是 windows：这个作业要真跑「SDCC 编译 → 离线确定性判定」，
+    # 而 SDCC 在 Windows runner 上没有干净来源（winget / chocolatey / conda-forge 均无包，
+    # 官网只发安装器），ubuntu 的 apt 里有。内核对 DSN 的离线判定本身是纯字符串判定、
+    # 不碰 Win32；只有读 ISIS 窗口那部分才需要 Windows，而它本来就不属于本作业。
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -34,6 +35,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+
+      # 装免费的 SDCC。不装它，「SDCC 可将自带示例编译为 hex/ihx」与
+      # 「mcu_lab run 真实串起 SDCC 编译与离线判定」两项就只能报"未找到可用编译器"而失败——
+      # 那是环境缺失，不是本项目坏了；装上它这两项才是真验证。
+      - name: 装 SDCC（8051 免费编译器）
+        run: sudo apt-get update && sudo apt-get install -y sdcc
 
       - name: 跑测试
         run: node test.mjs
